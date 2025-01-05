@@ -1,0 +1,72 @@
+.card{
+    background-color: #007AFF !important;
+    color: white !important;
+    border-radius: 15px !important;
+    height: 70vh !important;
+    padding: 1vw;
+    margin-top: 2vh ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.info{
+    margin-top: 2vh;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.name{
+    margin-top: 5vh;
+    font-size: 2rem;
+    margin-bottom: 5vh;
+    font-weight: bold;
+}
+.rating{
+    display: flex;
+    gap: 2vw;
+}
+.class{
+    display: flex;
+    gap: 2vw;
+}
+.details{
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5vh 0vh 5vh;
+    padding-top: 2.5vh;
+    color: #007AFF;
+    margin-top: 6vh;
+}
+@media screen and (min-width: 600px){
+    .details{
+        padding-top: 1.5vh;
+    }
+}
+.details:hover{
+    background-color: grey;
+    transition: 0.3s;
+    color: white;
+}
+.rate{
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 19vw 0vh 19vw;
+    padding-top: 2.5vh;
+    color: #007AFF;
+}
+@media screen and (min-width: 600px){
+    .rate{
+        padding: 0 4.5vw 0vh 4.5vw;
+        padding-top: 1.5vh;
+    }
+}
+.rate:hover{
+    background-color: grey;
+    color: white;
+    transition: 0.3s;
+}
