@@ -1,0 +1,68 @@
+.log-in-wrapper{
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    width: 94vw;
+}
+.log-in-text{
+    margin: 0 auto;
+   margin-top: 8vh;
+   padding-bottom: 6vh;
+   font-size: 2.5rem;
+   font-weight: bold;
+}
+.form{
+    border-radius: 5px;
+    display: flex;
+    padding: 1vh;
+    padding-top: 3vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #007AFF;
+    color: white;
+    font-size: 1.3rem;
+}
+.log-in-input{
+    border-radius: 15px;
+    border: none;
+    margin-bottom: 2vh;
+}
+.sign-in-button{
+    margin-top: 2vh;
+    border-radius: 15px;
+    background-color: white;
+    border: none;
+    padding: 1vh 27vw 1vh 27vw;
+    color: #007AFF;
+}
+.sign-in-button:hover{
+    background-color: gray;
+    color: white;
+    transition: 0.3s;
+}
+.aspen-text{
+    font-size: 0.7rem;
+    margin-top: 3vh;
+    text-decoration: underline;
+}
+@media screen and (min-width: 600px){
+    .log-in-wrapper{
+        width: 30vw;
+    }
+    .log-in-text{
+        font-size: 4rem;
+    }
+    .sign-in-button{
+        padding: 1vh 5.3vw 1vh 5.3vw;
+    }
+    .log-in-input{
+        border-radius: 15px;
+        border: 3px solid white;
+        padding: 1vh;
+        margin-bottom: 2vh;
+    }
+    .aspen-text{
+        font-size: 1rem;
+    }
+}

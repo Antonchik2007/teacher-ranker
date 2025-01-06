@@ -1,0 +1,48 @@
+.profile-text{
+   margin: 0 auto;
+   margin-top: 8vh;
+   padding-bottom: 6vh;
+   font-size: 2.5rem;
+   font-weight: bold;
+}
+.profie-page-wrapper{
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    width: 94vw;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    font-size: 2rem;
+}
+.button{
+    background-color: #007AFF;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+.button:hover{
+    background-color: grey;
+    color: white;
+    transition: 0.3s;
+}
+
+
+@media screen and (min-width: 600px){
+    .profie-page-wrapper{
+        width: 67vw;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: column;
+        gap: 8vh;
+        font-size: 3rem;
+    }
+    .profile-text{
+        font-size: 4rem;
+    }
+}
