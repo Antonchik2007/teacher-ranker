@@ -4,6 +4,7 @@ import Header from './modules/header/Header';
 import MainPage from './modules/mainPage/MainPage';
 import ProfilePage from './modules/profilePage/ProfilePage';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import TeacherDetails from './modules/teacherDetails/TeacherDetails';
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ function App() {
             <Route path="/" element={<MainPage/>} />
             <Route path="/profile" element={<ProfilePage />}/>
             <Route path='/logIn' element={<LogIn/>}/>
+            <Route path='/teacher-details' element={<TeacherDetails/>}/>
           </Routes>
       </div>
       </div>

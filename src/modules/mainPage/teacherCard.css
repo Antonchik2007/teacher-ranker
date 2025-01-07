@@ -34,10 +34,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 5vh 0vh 5vh;
+    padding: 0 5vh 2.5vh 5vh;
     padding-top: 2.5vh;
     color: #007AFF;
     margin-top: 6vh;
+}
+.link{
+    color: #007AFF !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
 }
 @media screen and (min-width: 600px){
     .details{
@@ -63,6 +69,9 @@
     .rate{
         padding: 0 4.5vw 0vh 4.5vw;
         padding-top: 1.5vh;
+    }
+    .details{
+        padding: 1.8vh 5vh 1.8vh 5vh;
     }
 }
 .rate:hover{

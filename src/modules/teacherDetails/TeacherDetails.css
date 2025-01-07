@@ -1,0 +1,85 @@
+.details-wrapper{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    height: 100%;
+}
+.teacher-header{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+.teacher-header-text{
+    margin: 1vw;
+}
+.phone-info{
+    width: 100vw;
+    background-color: #007AFF;
+}
+.difficulty-info{
+    margin-top: 3vh;
+    background-color: #007AFF;
+    width: 100vw;
+}
+.report-text, .difficulty-text{
+    margin: 1vw;
+    margin-left: 15vw;
+}
+
+.report-text-title, .difficulty-title{
+    margin-left: 15vw;
+    font-weight: bold;
+    color: white;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+.very-easy{
+    color: #00FF11;
+}
+.easy{
+    color: #BBFF00;
+}
+.medium{
+    color: #FFD900;
+}
+.hard{
+    color: #FF6200;
+}
+.very-hard{
+    color: #FF0000;
+}
+
+.allowed{
+    color: #00FF11;
+}
+.somewhat-allowed{
+    color: #FFD900;
+}
+.not-allowed{
+    color: #FF0000;
+    margin-bottom: 1vh;
+}
+.asses-buttons{
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+.asses-button{
+    background-color: #007AFF;
+    color: white;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    padding: 1vh 3vw 1vh 3vw;
+}
+.asses-button:hover{
+    background-color: grey;
+    transition: 0.3s;
+}
