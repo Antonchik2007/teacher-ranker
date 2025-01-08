@@ -1,7 +1,6 @@
 import React from "react";
 import './TeacherDetails.css'
 import {Link } from 'react-router-dom';
-
 const TeacherDetails = () => {
 
     return(
@@ -26,7 +25,7 @@ const TeacherDetails = () => {
                 <p className="difficulty-text very-hard">5 students reported: Very hard</p>
             </div>
             <div className="asses-buttons">
-                <button className="asses-button rate-button">Rate</button>
+                <button type="button" className="btn asses-button rate-button" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                 <Link to='/teacher-details/teacher-comments'><button className="asses-button comment-button">View comments</button></Link>
             </div>
         </div>
