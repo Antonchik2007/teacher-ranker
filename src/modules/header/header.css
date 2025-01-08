@@ -1,7 +1,7 @@
 .navbar{
     width: 100vw;
     background-color: #007AFF;
-    color: white;
+    color: white !important;
 }
 .navbar-brand{
     font-weight: bold;
@@ -10,6 +10,10 @@
 .link{
     color: white !important;
     text-decoration: none;
+}
+.link-text{
+    color: white; 
+    margin: 0;
 }
 .link:hover{
     color: rgb(251, 191, 52) !important;

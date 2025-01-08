@@ -1,0 +1,7 @@
+.comment-outer-wrapper{   
+    border: 3px solid black;
+    background-color: white !important;
+}
+.comment-wrapper{
+    border: 3px solid black !important;
+}

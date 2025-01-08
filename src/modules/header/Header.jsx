@@ -19,10 +19,10 @@ const Header = () => {
 </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="#home"><Link to='/' className="link">Home</Link></Nav.Link>
-            <Nav.Link href="#logIn"><Link to='/logIn' className="link">Log in</Link></Nav.Link>
-            <Nav.Link href="#profile"><Link to='/profile' className="link">Profile</Link></Nav.Link>
-            <Nav.Link href="#contact"><Link to='/contact' className="link">Contact</Link></Nav.Link>
+            <Nav.Link href="#home"><Link to='/' className="link"><p className="link-text">Home</p></Link></Nav.Link>
+            <Nav.Link href="#logIn"><Link to='/logIn' className="link"><p className="link-text">Log in</p></Link></Nav.Link>
+            <Nav.Link href="#profile"><Link to='/profile' className="link"><p className="link-text">Profile</p></Link></Nav.Link>
+            <Nav.Link href="#contact"><Link to='/contact' className="link"><p className="link-text">Contact</p></Link></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

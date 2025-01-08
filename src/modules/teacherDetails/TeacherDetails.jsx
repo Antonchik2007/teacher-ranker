@@ -1,5 +1,6 @@
 import React from "react";
 import './TeacherDetails.css'
+import {Link } from 'react-router-dom';
 
 const TeacherDetails = () => {
 
@@ -26,11 +27,7 @@ const TeacherDetails = () => {
             </div>
             <div className="asses-buttons">
                 <button className="asses-button rate-button">Rate</button>
-                <button className="asses-button comment-button">Leave a comment</button>
-            </div>
-            <p>Comments left by people: </p>
-            <div className="comments">
-
+                <Link to='/teacher-details/teacher-comments'><button className="asses-button comment-button">View comments</button></Link>
             </div>
         </div>
     )
