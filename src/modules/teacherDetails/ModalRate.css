@@ -1,0 +1,71 @@
+.modal-button{
+    color: white;
+    background-color: #007AFF;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 1vh 18vw 1vh 18vw;
+    border-radius: 15px;
+}
+.modal-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-footer{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.modal-body{
+    color: #007AFF;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 1.3rem;
+}
+.modal-teacher-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.modal-teacher-title{
+    font-weight: 500;
+}
+.modal-teacher-phone-choice{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.modal-class-difficulty-ratings{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 1.2rem;
+}
+.modal-teacher-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.modal-phone-Yes{
+    color: #00FF11;
+}
+.modal-phone-No{
+    color: #FF0000;
+}
+.modal-phone-Sometimes{
+    color: #FFD900;
+}
+.difficulty-rating-active, .modal-phone-active{
+    border: 3px #007AFF solid;
+    padding: 1vw 4vw 1vw 4vw;
+    transition: 0.5s;
+    transform: scale(1.1);
+}
