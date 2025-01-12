@@ -34,26 +34,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 5vh 2.5vh 5vh;
-    padding-top: 2.5vh;
+    padding: 0 5vh 2.5vh 5vh !important;
+    padding-top: 2.5vh !important;
     color: #007AFF;
+    text-decoration: none;
     margin-top: 6vh;
-}
-.link{
     color: #007AFF !important;
     display: flex !important;
     justify-content: center;
     align-items: center;
 }
-@media screen and (min-width: 600px){
+@media (min-width: 1200px) and (max-width: 1400px) and (min-height: 700px) and (max-height: 800px) {
     .details{
         padding-top: 1.5vh;
+        padding: 3% 4% 3% 4% !important;
+    }
+}
+@media (min-width: 1401px){
+    .details{
+        padding-top: 1.7vh !important;
+        padding-bottom: 1.7vh !important;
     }
 }
 .details:hover{
     background-color: grey;
     transition: 0.3s;
-    color: white;
+    color: white !important; 
+    cursor: pointer;
 }
 .rate{
     background-color: white;

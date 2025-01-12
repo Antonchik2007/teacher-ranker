@@ -20,21 +20,24 @@
     margin: 1vw;
 }
 .phone-info{
-    width: 100vw;
+    width: 90vw;
     background-color: #007AFF;
+    border-radius: 15px;
+    margin-top: 5%;
 }
 .difficulty-info{
     margin-top: 3vh;
     background-color: #007AFF;
-    width: 100vw;
+    width: 90vw;
+    border-radius: 15px;
 }
 .report-text, .difficulty-text{
     margin: 1vw;
-    margin-left: 15vw;
+    margin-left: 5%;
 }
 
 .report-text-title, .difficulty-title{
-    margin-left: 15vw;
+    margin-left: 5%;
     font-weight: bold;
     color: white;
     margin-top: 1vh;
@@ -84,8 +87,34 @@
     background-color: grey;
     transition: 0.3s;
 }
-@media screen and (min-width: 400px){
+@media screen and (min-width: 1401px){
     .comment-button{
         margin-bottom: 3vh;
+        width: 100% !important;
+    }
+    .difficulty-info, .phone-info{
+        width: 38%;
+        border-radius: 15px;
+    }
+    .difficulty-text, .report-text, .report-text-title{
+        margin-left: 5%;
+    }
+    .phone-info{
+        margin-top: 0;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1400px) and (min-height: 700px) and (max-height: 800px){
+    .comment-button{
+        width: 100% !important;
+    }
+    .difficulty-info, .phone-info{
+        width: 40%;
+        border-radius: 15px;
+    }
+    .phone-info{
+        margin-top: 0;
+    }
+    .difficulty-text, .report-text, .report-text-title{
+        margin-left: 5%;
     }
 }

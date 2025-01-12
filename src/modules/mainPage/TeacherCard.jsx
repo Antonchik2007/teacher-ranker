@@ -13,7 +13,7 @@ const TeacherCard = ({teacher}) => {
             <div className="info name">{teacher.name}</div>
             <div className="info class"><p>Class: </p>{teacher.schoolClass}</div>
             <div className="info rating"><p>Rating: </p>{teacher.rating}</div>
-            <div className="info details"><Link to='/teacher-details' className="link">View details</Link></div>
+            <Link to='/teacher-details' className="info details">View details</Link>
             <ModalRate customButton={ <div className="info rate"> <p>Rate</p></div>}/>
         </Card>
         </Col>
