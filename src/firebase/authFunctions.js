@@ -76,9 +76,6 @@ export const handleSignUp = async (e, setEmail, setPassword, email, password, se
             createdAt: new Date()
         })
 
-
-
-
         alert('User created successfully');
         setEmail('');
         setPassword('');
