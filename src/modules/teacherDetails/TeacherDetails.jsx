@@ -2,14 +2,15 @@ import React from "react";
 import './TeacherDetails.css'
 import {Link } from 'react-router-dom';
 import ModalRate from "./ModalRate";
+import { useAppContext } from "../../AppContext";
 const TeacherDetails = () => {
-
+        const currentTeacher = useAppContext().currentTeacher;
     return(
         <div className="details-wrapper">
             <div className="teacher-header">
-                <p className="teacher-header-text teahcher-name">Teacher: Ms Simon</p>
-                <p className="teacher-header-text techer-class">Class: Physics</p>
-                <p className="teacher-header-text teacher-rating">Rating: 2.3</p>
+                <p className="teacher-header-text teahcher-name">{currentTeacher.name}</p>
+                <p className="teacher-header-text techer-class">Department: {currentTeacher.schoolDepartment}</p>
+                <p className="teacher-header-text teacher-rating">Rating: {currentTeacher.rating}</p>
             </div>
             <div className="phone-info">
                 <p className="report-text-title">Phone allowance - student reports:</p>

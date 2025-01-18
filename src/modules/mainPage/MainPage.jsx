@@ -6,12 +6,13 @@ import TeacherCard from "./TeacherCard";
 const MainPage = () => {
 
     const teacherData = useAppContext().teacherData;
+    const teachers = useAppContext().teachers;
     return(
         <div className="main-page-wrapper">
-        <Container>
+        <Container >
             <Row>
                 
-                    {teacherData.map((teacher, index) => {
+                    {teachers.map((teacher, index) => {
                        return <TeacherCard key={index} teacher={teacher}/>
                    })}
                 

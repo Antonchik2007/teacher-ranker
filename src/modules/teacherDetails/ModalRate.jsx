@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import './ModalRate.css'
 import {Modal} from 'react-bootstrap'
+import { useAppContext } from "../../AppContext";
 
 const ModalRate = ({customButton}) => {
     const [show, setShow] = useState(false);
@@ -10,6 +11,7 @@ const ModalRate = ({customButton}) => {
     const handleShow = () => setShow(true);
     const difficultyRating = [1, 2, 3, 4, 5]
     const phoneUsage = ['Yes', 'No', 'Sometimes']
+    const currentTeacher = useAppContext().currentTeacher;
 
     const handleClickSelect = (index, category) => {
       switch(category){
@@ -32,10 +34,10 @@ const ModalRate = ({customButton}) => {
         </Modal.Header>
         <Modal.Body>
           <div className="modal-teacher-header">
-            <p className="modal-teacher-title">Ms Simon</p>
-            <p className="modal-teacher-class">Class: Physics</p>
+            <p className="modal-teacher-title">{currentTeacher.name}</p>
+            <p className="modal-teacher-class">Department: {currentTeacher.schoolDepartment}</p>
           </div>
-            <p className="modal-teacher-rating">Rating:  3 starts</p>
+            <p className="modal-teacher-rating">Rating: {currentTeacher.rating}</p>
             <p className="modal-teacher-phone">Cell phone usage:</p>
             <div className="modal-teacher-phone-choice">
               {phoneUsage.map((option, index) => {
@@ -50,7 +52,7 @@ const ModalRate = ({customButton}) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <button className="modal-button">Submit</button>
+          <button className="modal-button-footer">Submit</button>
         </Modal.Footer>
       </Modal>
         </div>

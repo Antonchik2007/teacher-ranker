@@ -6,7 +6,11 @@ import ProfilePage from './modules/profilePage/ProfilePage';
 import Comments from './modules/comments/Comments.jsx'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import TeacherDetails from './modules/teacherDetails/TeacherDetails';
+import { useEffect } from 'react';
 function App() {
+
+
+
   return (
     <BrowserRouter>
       <div className="app-wrapper">
