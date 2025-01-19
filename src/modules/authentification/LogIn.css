@@ -3,6 +3,7 @@
     margin: 0 auto;
     flex-direction: column;
     width: 94vw;
+    border-radius: 30px;
 }
 .log-in-text{
     margin: 0 auto;
@@ -41,8 +42,8 @@
     color: white;
     transition: 0.3s;
 }
-.aspen-text{
-    font-size: 0.7rem;
+.switch-option-text{
+    font-size: 1.15rem;
     margin-top: 3vh;
     text-decoration: underline;
 }
