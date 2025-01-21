@@ -2,17 +2,19 @@ import React, {useState} from "react";
 import './header.css'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { initializeTeachers } from "../../firebase/teacherHandle";
+import { useAppContext } from "../../AppContext";
 const Header = () => {
 
     const [expanded, setExpanded] = useState(false);
-
+    const {teachers, setTeachers} = useAppContext();
     const handleExpansion = () => {
       setExpanded(!expanded)
     }
     return(
     <Navbar expand="lg" sticky="top" expanded={expanded} onToggle={setExpanded}>
       <Container>
-        <Navbar.Brand href="#home">Teacher Ranker</Navbar.Brand>
+        <Navbar.Brand href="#home" >Teacher Ranker</Navbar.Brand>
         <Navbar.Toggle 
         onClick={handleExpansion}
         aria-controls="basic-navbar-nav" 

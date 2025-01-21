@@ -12,7 +12,7 @@ const TeacherCard = ({teacher}) => {
         <Col md={6}>
         <Card>
             <div className="info name">{teacher.name}</div>
-            <div className="info profile-picture"><img src={`/downloaded_images/${teacher.image}`} alt={`${teacher.name}'s image`} /></div>
+            <div className="info profile-picture" ><img src={`/downloaded_images/${teacher.image}`} alt={`${teacher.name}'s image`} /></div>
             <div className="info class"><p>Department: </p>{teacher.schoolDepartment}</div>
             <div className="info rating"><p>Rating: </p>{teacher.rating}</div>
             <Link to='/teacher-details' className="info details" onClick={() => setCurrentTeacher(teacher)}>View details</Link>
