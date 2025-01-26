@@ -86,6 +86,7 @@ img{
     padding: 0 19vw 0vh 19vw;
     padding-top: 2.5vh;
     color: #007AFF;
+    cursor: pointer;
 }
 @media screen and (min-width: 600px){
     .rate{

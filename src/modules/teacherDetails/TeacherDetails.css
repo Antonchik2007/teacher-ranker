@@ -24,16 +24,14 @@
     background-color: #007AFF;
     border-radius: 15px;
     margin-top: 5%;
+    padding: 1vh;
 }
 .difficulty-info{
     margin-top: 3vh;
     background-color: #007AFF;
     width: 90vw;
     border-radius: 15px;
-}
-.report-text, .difficulty-text{
-    margin: 1vw;
-    margin-left: 5%;
+    padding: 1vh;
 }
 
 .report-text-title, .difficulty-title{
@@ -65,8 +63,12 @@
 .somewhat-allowed{
     color: #FFD900;
 }
+.report-text, .difficulty-text{
+    margin: 1vw;
+    margin-left: 5%;
+    color: white;
+}
 .not-allowed{
-    color: #FF0000;
     margin-bottom: 1vh;
 }
 .asses-buttons{

@@ -6,6 +6,11 @@
     font-size: 1.5rem;
     padding: 1vh 18vw 1vh 18vw;
     border-radius: 15px;
+    cursor: pointer;
+}
+.modal-button:hover{
+    background-color: grey;
+    transition: 0.3s;
 }
 .modal-button-footer{
     color: white;
@@ -15,6 +20,12 @@
     font-size: 1.5rem;
     padding: 1vh 30% 1vh 30%;
     border-radius: 15px;
+    cursor: pointer;
+    border: none;
+}
+.modal-button-footer:hover{
+    background-color: grey;
+    transition: 0.3s;
 }
 .modal-wrapper{
     display: flex;
@@ -72,9 +83,36 @@
 .modal-phone-Sometimes{
     color: #FFD900;
 }
+
+
+.modal-comment{
+    width: 100%;
+    border-radius: 15px;
+    border-color: #007AFF;
+    font-size: 1rem;
+    padding: 1vh;
+    height: 10vh;
+}
+.modal-comment::placeholder{
+    font-size: 1rem;
+}
+.class-difficulty-rating, .modal-phone{
+    border: 1.5px solid #007AFF;
+    padding: 1vh 4vw 1vh 4vw;
+    border-radius: 15px;
+    cursor: pointer;
+    color: #007AFF;
+}
+.modal-phone{
+    padding: 1vh 3vw 1vh 3vw;
+}
 .difficulty-rating-active, .modal-phone-active{
-    border: 3px #007AFF solid;
-    padding: 1vw 4vw 1vw 4vw;
-    transition: 0.5s;
-    transform: scale(1.1);
+    color: white;
+    background-color: #007AFF;
+    transition: 0.3s;
+}
+@media screen and (min-width: 1400px){
+    .class-difficulty-rating, .modal-phone{
+        padding: 1vh 1vw 1vh 1vw;
+    }
 }
