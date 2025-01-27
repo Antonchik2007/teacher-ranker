@@ -10,6 +10,7 @@ export const AppProvider = ({children}) => {
         const [teachers, setTeachers] = useState([])
         const [currentTeacher, setCurrentTeacher] = useState(teachers)
         const [isLoggenIn, setIsLoggedIn] = useState(false)
+        const [currentUser, setCurrentUser] = useState('')
       useEffect(() => {
         // Check if the teachers data is already set to avoid re-renders
         if (teachers.length > 0) return; // Prevent unnecessary re-renders
@@ -37,7 +38,7 @@ export const AppProvider = ({children}) => {
         setTeachers(teachersWithImages);
     }, [teachers]); // Add teachers as a dependency to avoid multiple updates
     return(
-        <AppContext.Provider value={{teacherData, setTeacherData, Home, teachers, currentTeacher, setCurrentTeacher, isLoggenIn, setIsLoggedIn}}>
+        <AppContext.Provider value={{teacherData, setTeacherData, Home, teachers, currentTeacher, setCurrentTeacher, isLoggenIn, setIsLoggedIn, currentUser, setCurrentUser}}>
             {children}
         </AppContext.Provider>
     )

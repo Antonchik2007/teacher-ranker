@@ -3,6 +3,9 @@ import './ModalRate.css'
 import {Modal} from 'react-bootstrap'
 import { useAppContext } from "../../AppContext";
 
+import { arrayUnion, doc, increment, setDoc, updateDoc } from "firebase/firestore";
+import { db, auth } from '../../firebase/firebase'
+
 const ModalRate = ({customButton}) => {
     const [show, setShow] = useState(false);
     const [selectedDifficultyIndex, setSelectedDifficultyIndex] = useState(null)
@@ -12,11 +15,11 @@ const ModalRate = ({customButton}) => {
     const handleShow = () => setShow(true);
     const difficultyRating = [1, 2, 3, 4, 5]
     const phoneUsage = ['Yes', 'No', 'Sometimes']
-    const currentTeacher = useAppContext().currentTeacher;
+    const [commentInput, setCommentInput] = useState('')
+    const {currentTeacher, currentUser} = useAppContext()
 
     const handleClickSelect = (index, category) => {
       switch(category){
-
       case 'difficulty':
         setSelectedDifficultyIndex(index)
         break;
@@ -26,6 +29,19 @@ const ModalRate = ({customButton}) => {
       case 'rating':
         setSelectedRatingIndex(index)
         break
+      }
+    }
+    const handleSubmit = async () => {
+      try {
+        await updateDoc(doc(db, 'users', currentUser.email), {
+          ratedTeachers: arrayUnion({'teacher': currentTeacher.name, 'phone': phoneUsage[selectedPhoneIndex], 'difficulty': selectedDifficultyIndex+1, 'rating': selectedRatingIndex+1, 'comment': commentInput})
+        })
+        await updateDoc(doc(db, 'teachers', currentTeacher.name), {
+          comments: arrayUnion({'text': commentInput, 'author': currentUser.name}),
+          ratingAmount: increment(1)
+        })
+      } catch (error) {
+        console.log(error.message);
       }
     }
     return(
@@ -60,10 +76,10 @@ const ModalRate = ({customButton}) => {
               return <p key={index} onClick={() => handleClickSelect(index, 'rating')} className={selectedRatingIndex === index? 'class-difficulty-rating difficulty-rating-active' : "class-difficulty-rating"}>{rating}</p>
             })}
           </div>
-          <textarea className="modal-comment" placeholder="Type your comment"></textarea>
+          <textarea className="modal-comment" placeholder="Type your comment" onChange={(e) => setCommentInput(e.target.value)}></textarea>
         </Modal.Body>
         <Modal.Footer>
-          <button className="modal-button-footer">Submit</button>
+          <button className="modal-button-footer" onClick={handleSubmit}>Submit</button>
         </Modal.Footer>
       </Modal>
         </div>

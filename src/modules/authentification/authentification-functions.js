@@ -3,12 +3,16 @@ import { doc, setDoc } from "firebase/firestore";
 import { db, auth } from '../../firebase/firebase'
 
 
-export const handleLogIn = async (e, setEmail, setPassword, email, password, setError, setIsLoggedIn) => {
+export const handleLogIn = async (e, setEmail, setPassword, email, password, setError, setIsLoggedIn, setCurrentUser) => {
     e.preventDefault();
     try{
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user
+        setCurrentUser(user)
         setIsLoggedIn(true);
         alert('User logged in successfully');
+        setEmail('');
+        setPassword('');
     } catch(err){
         setError(err.message);
         switch (err.code) {
@@ -43,8 +47,7 @@ export const handleLogIn = async (e, setEmail, setPassword, email, password, set
                 console.error(err);
         }
     }
-    setEmail('');
-    setPassword('');
+    
 }
 
 export const handleSignUp = async (e, setEmail, setPassword, email, password, setError, setIsSignedUp) => {
