@@ -10,7 +10,7 @@ const Comment = ({text, author}) => {
         
         <Col md={6} className="comment-outer-wrapper">
             <Card className="comment-wrapper">
-            <div className="comment-header">{author}<div className="comment-date">01/03/2025</div></div>
+            <div className="comment-header"><p></p><div className="comment-date">01/03/2025</div></div>
             <div className="comment-content">{text}</div>
             </Card>
         </Col>

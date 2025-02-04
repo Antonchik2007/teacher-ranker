@@ -4,13 +4,15 @@ import Comment from './Comment.jsx'
 import {Row, Container } from 'react-bootstrap';
 import { db } from "../../firebase/firebase.js";
 import { getDoc, doc } from "firebase/firestore";
+import { useAppContext } from "../../AppContext.jsx";
 
 
 const Comments = () => {
     const [comments, setComments] = useState([])
+    const {currentTeacher, setCurrentTeacher} = useAppContext()
     useEffect(() => {
         const commentText = async () => {
-            const teacherObj = doc(db, 'teachers', 'Aidan Price')
+            const teacherObj = doc(db, 'teachers', currentTeacher.name)
     
             try{
                 const docSnap = await getDoc(teacherObj)

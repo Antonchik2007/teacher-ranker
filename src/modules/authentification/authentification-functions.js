@@ -99,3 +99,10 @@ export const handleSignUp = async (e, setEmail, setPassword, email, password, se
     
 }
 }
+
+
+
+
+
+
+
