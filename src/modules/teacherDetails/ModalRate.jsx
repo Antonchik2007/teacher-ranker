@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import './ModalRate.css'
 import {Modal} from 'react-bootstrap'
 import { useAppContext } from "../../AppContext";
-
+import { Timestamp } from "firebase/firestore";
 import { arrayUnion, doc, increment, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { db, auth } from '../../firebase/firebase'
 
@@ -75,7 +75,7 @@ const ModalRate = ({customButton}) => {
     
         // **3. Update teacher's ratings and comments**
         await updateDoc(teacherRef, {
-          comments: arrayUnion({ text: commentInput, author: currentUser.email }),
+          comments: arrayUnion({ text: commentInput, author: currentUser.email, date: Timestamp.now() }),
           ratingAmount: increment(1),
           ratingTotal: increment(selectedRatingIndex + 1),
           rating: newRating, // Manually computed correct value

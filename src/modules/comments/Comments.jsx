@@ -40,7 +40,7 @@ const Comments = () => {
             <Container>
                 <Row className="comments-row">
                     {comments.length > 0 ? (comments.map((comment, index) => {
-                        return <Comment key={index} text={comment?.text} author={comment?.author}/>
+                        return <Comment key={index} text={comment?.text} author={comment?.author} date={comment?.date}/>
                     })) 
                     : 
                     (<p>...loading</p>)}

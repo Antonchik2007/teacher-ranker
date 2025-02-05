@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { arrayUnion, doc, increment, setDoc, updateDoc, getDoc } from "firebase/firestore";
+import { db, auth } from '../src/firebase/firebase'
 import MainPage from './modules/mainPage/MainPage'
 const AppContext = createContext();
 
@@ -12,23 +14,32 @@ export const AppProvider = ({children}) => {
         const [isLoggenIn, setIsLoggedIn] = useState(false)
         const [currentUser, setCurrentUser] = useState('')
       useEffect(() => {
-        // Check if the teachers data is already set to avoid re-renders
-        if (teachers.length > 0) return; // Prevent unnecessary re-renders
 
-        // Prepare teachers data
-        const teachersJS = [];
-        for (const [department, teacherNames] of Object.entries(departments)) {
-            teacherNames.forEach(name => {
-                teachersJS.push({
-                    name,
-                    rating: 0, // Default rating
-                    schoolDepartment: department,
-                });
-            });
-        }
+        const fetchTeachers = async () => {
+            if (teachers.length > 0) return; // Prevent unnecessary re-renders
+
+            const teacherPromises = Object.entries(departments).flatMap(([department, teacherNames]) =>
+            teacherNames.map(async (name) => {
+              const teacherRef = doc(db, "teachers", name);
+              const teacherDoc = await getDoc(teacherRef);
+              if (!teacherDoc.exists()) throw new Error("Teacher does not exist");
+      
+              const teacherData = teacherDoc.data();
+      
+              return {
+                name,
+                rating: teacherData.rating.toFixed(1) || 0,
+                phones: teacherData.phones || {},
+                difficulty: teacherData.difficulty || {},
+                schoolDepartment: department,
+              };
+            })
+          );
+
+          const teacherResults = await Promise.all(teacherPromises);
 
         // Map through the teachers and add image info
-        const teachersWithImages = teachersJS.map(teacher => {
+        const teachersWithImages = teacherResults.map(teacher => {
             // Format image name to replace spaces with underscores and append ".jpg"
             const imageName = teacher.name.replace(/\s+/g, '_') + '.jpg';
             return { ...teacher, image: imageName };
@@ -36,6 +47,9 @@ export const AppProvider = ({children}) => {
 
         // Update the state with the teachers data (only once)
         setTeachers(teachersWithImages);
+        }
+        fetchTeachers();
+
     }, [teachers]); // Add teachers as a dependency to avoid multiple updates
     return(
         <AppContext.Provider value={{teacherData, setTeacherData, Home, teachers, currentTeacher, setCurrentTeacher, isLoggenIn, setIsLoggedIn, currentUser, setCurrentUser}}>
