@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './ModalRate.css'
 import {Modal} from 'react-bootstrap'
 import { useAppContext } from "../../AppContext";
@@ -11,7 +11,12 @@ const ModalRate = ({customButton}) => {
     const [selectedDifficultyIndex, setSelectedDifficultyIndex] = useState(null)
     const [selectedPhoneIndex, setSelectedPhoneIndex] = useState(null)
     const [selectedRatingIndex, setSelectedRatingIndex] = useState(null)
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+      setSelectedDifficultyIndex(null)
+      setSelectedPhoneIndex(null)
+      setSelectedRatingIndex(null)
+      setShow(false);
+    }
     const handleShow = () => {
       if(!isLoggenIn){
         alert('Please log in order to rate')
@@ -22,7 +27,8 @@ const ModalRate = ({customButton}) => {
     const difficultyRating = [1, 2, 3, 4, 5]
     const phoneUsage = ['Yes', 'No', 'Sometimes']
     const [commentInput, setCommentInput] = useState('')
-    const {currentTeacher, currentUser, setCurrentUser, isLoggenIn} = useAppContext()
+    const {currentTeacher, currentUser, setCurrentUser, isLoggenIn, ratingTrigger, setRatingTrigger} = useAppContext()
+    const [ratedTeachers, setRatedTeachers] = useState([]);
 
     const difficultyMapping = {
       1: "difficulty.veryEasy",
@@ -50,7 +56,38 @@ const ModalRate = ({customButton}) => {
         break
       }
     }
+
+    
+    useEffect(() => {
+      const fetchUserData = async () => {
+
+        if (!currentUser) return;
+        
+        try {
+            const userRef = doc(db, "users", currentUser.email);
+            const userSnap = await getDoc(userRef);
+  
+            if (userSnap.exists()) {
+                setRatedTeachers(userSnap.data().ratedTeachers || []);           
+            } else {
+                console.log("User document does not exist in Firestore");
+            }
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+        }
+      };
+      fetchUserData();
+    }, [currentTeacher, currentUser])
     const handleSubmit = async () => {
+
+      if(selectedDifficultyIndex === null || selectedPhoneIndex === null || selectedRatingIndex === null){
+        alert('Please select all fields');
+        return;
+      }
+      if(ratedTeachers.map(teacher => teacher.teacher).includes(currentTeacher.name)){
+        alert('You have already rated this teacher')
+        return;
+      }
       try {
         const difficultyToUpdate = difficultyMapping[selectedDifficultyIndex + 1];
         const phoneToUpdate = phoneMapping[selectedPhoneIndex + 1];
@@ -89,7 +126,14 @@ const ModalRate = ({customButton}) => {
           [phoneToUpdate]: increment(1)
         });
     
-        console.log("Rating successfully updated!");
+        alert("The teachers has been rated successfully");
+        setRatingTrigger(prev => !prev)
+        console.log(ratingTrigger);
+        
+        setSelectedDifficultyIndex(null)
+        setSelectedPhoneIndex(null)
+        setSelectedRatingIndex(null)
+        setShow(false);
       } catch (error) {
         console.error("Error updating rating:", error.message);
       }

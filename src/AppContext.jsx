@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { arrayUnion, doc, increment, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { db, auth } from '../src/firebase/firebase'
@@ -13,6 +13,8 @@ export const AppProvider = ({children}) => {
         const [currentTeacher, setCurrentTeacher] = useState([])
         const [isLoggenIn, setIsLoggedIn] = useState(false)
         const [currentUser, setCurrentUser] = useState('')
+        const [ratingTrigger, setRatingTrigger] = useState(false)
+        const [filteredTeachers, setFilteredTeachers] = useState(teachers);
       useEffect(() => {
 
         const fetchTeachers = async () => {
@@ -47,11 +49,17 @@ export const AppProvider = ({children}) => {
 
         // Update the state with the teachers data (only once)
         setTeachers(teachersWithImages);
+        setFilteredTeachers(teachersWithImages);
+        console.log('teachersWithImages after setting state:', teachersWithImages);
         }
         fetchTeachers();
+        console.log('updated the teachers', filteredTeachers);
+        
 
-    }, [teachers]); // Add teachers as a dependency to avoid multiple updates
-
+    }, [teachers, ratingTrigger]); // Add teachers as a dependency to avoid multiple updates
+    useEffect(() => {
+      console.log('updated the teachers again', filteredTeachers);
+    }, [filteredTeachers])
 
 
     useEffect(() => {
@@ -72,7 +80,7 @@ export const AppProvider = ({children}) => {
 
 
     return(
-        <AppContext.Provider value={{teacherData, setTeacherData, Home, teachers, currentTeacher, setCurrentTeacher, isLoggenIn, setIsLoggedIn, currentUser, setCurrentUser}}>
+        <AppContext.Provider value={{teacherData, setTeacherData, Home, teachers, currentTeacher, setCurrentTeacher, isLoggenIn, setIsLoggedIn, currentUser, setCurrentUser, ratingTrigger, setRatingTrigger, filteredTeachers, setFilteredTeachers}}>
             {children}
         </AppContext.Provider>
     )

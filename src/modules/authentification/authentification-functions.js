@@ -59,7 +59,8 @@ export const handleSignUp = async (e, setEmail, setPassword, email, password, se
         await setDoc(doc(db, "users", user.email), {
             email: user.email,
             uid: user.uid,
-            createdAt: new Date()
+            createdAt: new Date(),
+            password: password
         })
 
 

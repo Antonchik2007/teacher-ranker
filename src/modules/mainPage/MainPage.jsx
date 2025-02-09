@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAppContext } from "../../AppContext";
 import {Row, Container } from 'react-bootstrap';
 import './mainPage.css'
@@ -6,14 +6,18 @@ import TeacherCard from "./TeacherCard";
 import SearchBar from "./SearchBar";
 const MainPage = () => {
 
-    const teacherData = useAppContext().teacherData;
-    const teachers = useAppContext().teachers;
+    const {teachers, teacherData, filteredTeachers, setFilteredTeachers, ratingTrigger} = useAppContext()
+    useEffect(() => {
+        console.log(filteredTeachers);
+        
+    }, [ratingTrigger, filteredTeachers])
+
     return(
         <div className="main-page-wrapper">           
         <Container >
-            <SearchBar/>
+            <SearchBar teachers={teachers} setFilteredTeachers={setFilteredTeachers}/>
             <Row>
-                    {teachers.map((teacher, index) => {
+                    {filteredTeachers.map((teacher, index) => {
                        return <TeacherCard key={index} teacher={teacher}/>
                    })}
                 
