@@ -6,8 +6,7 @@ import {Link } from 'react-router-dom';
 import ModalRate from '../teacherDetails/ModalRate'
 import { useAppContext } from "../../AppContext";
 const TeacherCard = ({teacher}) => {
-    const setCurrentTeacher = useAppContext().setCurrentTeacher
-
+    const {setCurrentTeacher, isLoggenIn} = useAppContext()
     return(
         <Col md={6}>
         <Card>

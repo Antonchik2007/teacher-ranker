@@ -1,15 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import './Comments.css'
 import Comment from './Comment.jsx'
 import {Row, Container } from 'react-bootstrap';
 import { db } from "../../firebase/firebase.js";
 import { getDoc, doc } from "firebase/firestore";
 import { useAppContext } from "../../AppContext.jsx";
+import ModalRate from "../teacherDetails/ModalRate.jsx";
 
 
 const Comments = () => {
     const [comments, setComments] = useState([])
     const {currentTeacher, setCurrentTeacher} = useAppContext()
+    const isFirstRender = useRef(true)
     useEffect(() => {
         const commentText = async () => {
             const teacherObj = doc(db, 'teachers', currentTeacher.name)
@@ -28,14 +30,17 @@ const Comments = () => {
                 console.log(e.message);        
             }
         }   
-        commentText();
-        console.log(comments);
-    }, [])
+        if(currentTeacher && !Array.isArray(currentTeacher)){
+            commentText();
+            console.log(comments);
+        }
+        
+    }, [currentTeacher])
     
     return(
         <div className="comments-wrapper">
-            <div className="wrapper">
-            <div className="leave-comment-button" onClick={() => console.log(comments)}>Leave a comment</div>
+            <div className="wrapper">     
+            <div className="leave-comment-button"><ModalRate customButton={'Leave a comment'}/></div>
             </div>
             <Container>
                 <Row className="comments-row">
@@ -43,7 +48,7 @@ const Comments = () => {
                         return <Comment key={index} text={comment?.text} author={comment?.author} date={comment?.date}/>
                     })) 
                     : 
-                    (<p>...loading</p>)}
+                    (<p>...loading comments</p>)}
                 </Row>
             </Container>
         </div>

@@ -10,7 +10,7 @@ export const AppProvider = ({children}) => {
     const [teacherData, setTeacherData] = useState(['hi'])
         const departments = {'Art': ['Erica Baseggio', 'Sharon Finley', 'Rosalia Marzullo', 'Katheryn Garcia'], 'Computer Science': ['Luis Flores De Valgas'], 'Dual Language': ['Martin Bentley', 'Brian Boes', 'Anna Bronkowska', 'Nancy Campbell', 'Michael Cuellar', 'Ellen Damlich', 'Casey Fahnstrom', 'Melody Foley', 'Cheryl Graff', 'Hayley Kimbrue', 'Karen Krausen-Ferrer', 'David London', 'Kathleen Mahoney', 'Jess Miller', 'Cody Perenchio', 'Stephanie Righeimer', 'John Schlotfelt', 'James Thorson', 'Jorge Vargas', 'Michael Vonder Haar', 'Brian Wittenwyler'], 'English': ['Rachel Allmen', 'Vaughn Camacho', 'Yesenia Correa', 'Rachel Davidson', 'Elena Esman', 'Gabriella Frate', 'Justine Hunter', 'Linda Kim', 'Tina Mah', 'Nicholas Quinones', 'John Talley', 'Gregory Vecchio'], 'Math': ['John Brown', 'Stephen Cimaglia', 'Ryan Dant', 'Michael Lis', 'Georgian Mihoc', 'Diamond Montana', 'Peter Smith', 'Jordan Stein', 'Ryan Tamburello', 'Brian Tran', 'Erin Unander', 'John Wylie'], 'Music': ['Brett Benge', 'Anne Gallery', 'Puja Ramaswamy'], 'Physical Education': ['Shannon Gilfillan', 'Audrey Haderlein', 'Sergio Macias', 'Jessica Mojica', 'Abamwesiga Mutayoba', 'John Neal', 'Katherine Thiele'], 'Science': ['Mahesh Alur', 'Andrzej Barski', 'Anthony Carlsen', 'Vyjayanti Joshi', 'Alyssa Martin', 'Theo Pinson', 'Jessin Simon', 'Haley Whelan', 'Melissa Zagorski'], 'Social Studies': ['Daniel Bender', 'Nora Buganski', 'Theresa Darnell', 'Brian Fehr', 'Kristin Hu', 'Aidan Price', 'Anna Proni', 'David Roberts', 'Brian Ruiz', 'Jasmine Santiago', 'Si Squires-Kasten'], 'World Language': ['Alicia Acosta', 'Marissa Cavallini', 'Santiago De Fazio', 'Nohemi Rivera-Suarez', 'Valerie Wadycki']}
         const [teachers, setTeachers] = useState([])
-        const [currentTeacher, setCurrentTeacher] = useState(teachers)
+        const [currentTeacher, setCurrentTeacher] = useState([])
         const [isLoggenIn, setIsLoggedIn] = useState(false)
         const [currentUser, setCurrentUser] = useState('')
       useEffect(() => {
@@ -51,6 +51,26 @@ export const AppProvider = ({children}) => {
         fetchTeachers();
 
     }, [teachers]); // Add teachers as a dependency to avoid multiple updates
+
+
+
+    useEffect(() => {
+      if(currentTeacher && !Array.isArray(currentTeacher)){
+        localStorage.setItem("selectedTeacher", JSON.stringify(currentTeacher));
+        console.log('setting the teacher to be:', localStorage.getItem('selectedTeacher')); 
+      }           
+  }, [currentTeacher]);
+  
+  // Load teacher on page refresh
+  useEffect(() => {
+      const storedTeacher = localStorage.getItem("selectedTeacher");
+      if (storedTeacher) {
+          setCurrentTeacher(JSON.parse(storedTeacher));
+          console.log('loading on page refresh: ', localStorage.getItem('selectedTeacher'));
+      }
+  }, []);
+
+
     return(
         <AppContext.Provider value={{teacherData, setTeacherData, Home, teachers, currentTeacher, setCurrentTeacher, isLoggenIn, setIsLoggedIn, currentUser, setCurrentUser}}>
             {children}

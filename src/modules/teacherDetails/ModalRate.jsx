@@ -12,11 +12,17 @@ const ModalRate = ({customButton}) => {
     const [selectedPhoneIndex, setSelectedPhoneIndex] = useState(null)
     const [selectedRatingIndex, setSelectedRatingIndex] = useState(null)
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+      if(!isLoggenIn){
+        alert('Please log in order to rate')
+      }else{
+        setShow(true);
+      }
+    }
     const difficultyRating = [1, 2, 3, 4, 5]
     const phoneUsage = ['Yes', 'No', 'Sometimes']
     const [commentInput, setCommentInput] = useState('')
-    const {currentTeacher, currentUser, setCurrentUser} = useAppContext()
+    const {currentTeacher, currentUser, setCurrentUser, isLoggenIn} = useAppContext()
 
     const difficultyMapping = {
       1: "difficulty.veryEasy",

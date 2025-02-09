@@ -8,6 +8,7 @@
     padding: 2vh;
     border-radius: 15px;
     font-size: 1.3rem;
+    cursor: pointer;
 }
 .leave-comment-button:hover{
     background-color: gray;

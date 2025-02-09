@@ -14,7 +14,7 @@ const Header = () => {
     return(
     <Navbar expand="lg" sticky="top" expanded={expanded} onToggle={setExpanded}>
       <Container>
-        <Navbar.Brand href="#home" >Teacher Ranker</Navbar.Brand>
+        <Navbar.Brand><Link to='/' className="link">Teacher Ranker</Link></Navbar.Brand>
         <Navbar.Toggle 
         onClick={handleExpansion}
         aria-controls="basic-navbar-nav" 
