@@ -14,7 +14,7 @@ const Header = () => {
     return(
     <Navbar expand="lg" sticky="top" expanded={expanded} onToggle={setExpanded}>
       <Container>
-        <Navbar.Brand><Link to='/' className="link">Teacher Ranker</Link></Navbar.Brand>
+        <Navbar.Brand><Link to='/' className="link">Max Rankings</Link></Navbar.Brand>
         <Navbar.Toggle 
         onClick={handleExpansion}
         aria-controls="basic-navbar-nav" 
@@ -29,8 +29,7 @@ const Header = () => {
           <Nav className="ms-auto">
             <Nav.Link href="#home"><Link to='/' className="link" onClick={() => setExpanded(false)}><p className="link-text">Home</p></Link></Nav.Link>
             <Nav.Link href="#logIn"><Link to='/logIn' className="link" onClick={() => setExpanded(false)}><p className="link-text">Log in</p></Link></Nav.Link>
-            <Nav.Link href="#profile"><Link to='/profile' className="link" onClick={() => setExpanded(false)}><p className="link-text">Profile</p></Link></Nav.Link>
-            <Nav.Link href="#contact"><Link to='/contact' className="link" onClick={() => setExpanded(false)}><p className="link-text">Contact</p></Link></Nav.Link>
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -38,5 +37,6 @@ const Header = () => {
     )
 
 }
-
+//<Nav.Link href="#profile"><Link to='/profile' className="link" onClick={() => setExpanded(false)}><p className="link-text">Profile</p></Link></Nav.Link>
+//<Nav.Link href="#contact"><Link to='/contact' className="link" onClick={() => setExpanded(false)}><p className="link-text">Contact</p></Link></Nav.Link>
 export default Header;

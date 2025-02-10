@@ -126,9 +126,9 @@ const ModalRate = ({customButton}) => {
           [phoneToUpdate]: increment(1)
         });
     
-        alert("The teachers has been rated successfully");
+        alert("The teachers has been rated successfully!");
         setRatingTrigger(prev => !prev)
-        console.log(ratingTrigger);
+        console.log('The trigger has been sent', ratingTrigger);
         
         setSelectedDifficultyIndex(null)
         setSelectedPhoneIndex(null)

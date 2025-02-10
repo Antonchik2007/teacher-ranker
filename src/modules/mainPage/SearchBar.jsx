@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './SearchBar.css'
+import { useAppContext } from "../../AppContext";
 const SearchBar = ({teachers, setFilteredTeachers}) => {
 
     const [searchQuery, setSearchQuery] = useState("");
-
+    const ratingTrigger = useAppContext().ratingTrigger
     const handleSearch = (e) => {
         const query = e.target.value.toLowerCase();
         setSearchQuery(query);
@@ -14,6 +15,9 @@ const SearchBar = ({teachers, setFilteredTeachers}) => {
             setFilteredTeachers(teachers.filter(teacher => teacher.name.toLowerCase().includes(query)))
         }
     }
+    useEffect(() => {
+        setSearchQuery("");
+    }, [ratingTrigger])
     return(
         <form>
             <input type='text' placeholder="Search for a teacher" className="search-bar" value={searchQuery} onChange={handleSearch}/>

@@ -18,45 +18,64 @@ export const AppProvider = ({children}) => {
       useEffect(() => {
 
         const fetchTeachers = async () => {
-            if (teachers.length > 0) return; // Prevent unnecessary re-renders
-
-            const teacherPromises = Object.entries(departments).flatMap(([department, teacherNames]) =>
-            teacherNames.map(async (name) => {
-              const teacherRef = doc(db, "teachers", name);
-              const teacherDoc = await getDoc(teacherRef);
-              if (!teacherDoc.exists()) throw new Error("Teacher does not exist");
+          try {
+              console.log('fetchTeachers has been called');
       
-              const teacherData = teacherDoc.data();
+              const teacherPromises = Object.entries(departments).flatMap(([department, teacherNames]) =>
+                  teacherNames.map(async (name) => {
+                      try {
+                          const teacherRef = doc(db, "teachers", name);
+                          const teacherDoc = await getDoc(teacherRef);
       
-              return {
-                name,
-                rating: teacherData.rating.toFixed(1) || 0,
-                phones: teacherData.phones || {},
-                difficulty: teacherData.difficulty || {},
-                schoolDepartment: department,
-              };
-            })
-          );
-
-          const teacherResults = await Promise.all(teacherPromises);
-
-        // Map through the teachers and add image info
-        const teachersWithImages = teacherResults.map(teacher => {
-            // Format image name to replace spaces with underscores and append ".jpg"
-            const imageName = teacher.name.replace(/\s+/g, '_') + '.jpg';
-            return { ...teacher, image: imageName };
-        });
-
-        // Update the state with the teachers data (only once)
-        setTeachers(teachersWithImages);
-        setFilteredTeachers(teachersWithImages);
-        console.log('teachersWithImages after setting state:', teachersWithImages);
-        }
+                          if (!teacherDoc.exists()) {
+                              console.error(`Teacher ${name} does not exist`);
+                              return null; // Return null instead of throwing an error
+                          }
+      
+                          const teacherData = teacherDoc.data();
+      
+                          return {
+                              name,
+                              rating: teacherData.rating ? teacherData.rating.toFixed(1) : 0,
+                              phones: teacherData.phones || {},
+                              difficulty: teacherData.difficulty || {},
+                              schoolDepartment: department,
+                          };
+                      } catch (error) {
+                          console.error(`Error fetching teacher ${name}:`, error);
+                          return null; // Ensure the function continues
+                      }
+                  })
+              );
+      
+              const teacherResults = await Promise.all(teacherPromises);
+              
+              // Remove any null values caused by errors
+              const filteredResults = teacherResults.filter(Boolean);
+      
+              // Map through the teachers and add image info
+              const teachersWithImages = filteredResults.map(teacher => {
+                  const imageName = teacher.name.replace(/\s+/g, '_') + '.jpg';
+                  return { ...teacher, image: imageName };
+              });
+      
+              // Update the state
+              console.log('teachersWithImages before setting state:', teachersWithImages);
+              setTeachers(teachersWithImages);
+              setFilteredTeachers(teachersWithImages);
+              console.log('teachersWithImages after setting state:', teachersWithImages);
+              
+          } catch (error) {
+              console.error('fetchTeachers error:', error);
+          }
+      };
         fetchTeachers();
-        console.log('updated the teachers', filteredTeachers);
+        console.log('fetch teachers finished', filteredTeachers);
         
 
-    }, [teachers, ratingTrigger]); // Add teachers as a dependency to avoid multiple updates
+    }, [ratingTrigger]); // Add teachers as a dependency to avoid multiple updates
+
+
     useEffect(() => {
       console.log('updated the teachers again', filteredTeachers);
     }, [filteredTeachers])
