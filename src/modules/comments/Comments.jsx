@@ -48,7 +48,7 @@ const Comments = () => {
                         return <Comment key={index} text={comment?.text} author={comment?.author} date={comment?.date}/>
                     })) 
                     : 
-                    (<p>...loading comments</p>)}
+                    (<p>no comments for this teacher</p>)}
                 </Row>
             </Container>
         </div>
