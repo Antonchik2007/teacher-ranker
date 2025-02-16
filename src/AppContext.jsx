@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { arrayUnion, doc, increment, setDoc, updateDoc, getDoc } from "firebase/firestore";
+import { arrayUnion, doc, increment, setDoc, updateDoc, getDoc, collection, getDocs, writeBatch } from "firebase/firestore";
 import { db, auth } from '../src/firebase/firebase'
 import MainPage from './modules/mainPage/MainPage'
 const AppContext = createContext();
@@ -20,6 +20,14 @@ export const AppProvider = ({children}) => {
         const fetchTeachers = async () => {
           try {
               console.log('fetchTeachers has been called');
+              const storedTeachers = localStorage.getItem('teachers');
+            if (storedTeachers) {
+                const parsedTeachers = JSON.parse(storedTeachers);
+                setTeachers(parsedTeachers);
+                setFilteredTeachers(parsedTeachers);
+                console.log('Loaded teachers from local storage:', parsedTeachers);
+                return;
+            }
       
               const teacherPromises = Object.entries(departments).flatMap(([department, teacherNames]) =>
                   teacherNames.map(async (name) => {
@@ -37,6 +45,7 @@ export const AppProvider = ({children}) => {
                           return {
                               name,
                               rating: teacherData.rating ? teacherData.rating.toFixed(1) : 0,
+                              ratingAmount: teacherData.ratingAmount || 0,
                               phones: teacherData.phones || {},
                               difficulty: teacherData.difficulty || {},
                               schoolDepartment: department,
@@ -61,6 +70,7 @@ export const AppProvider = ({children}) => {
       
               // Update the state
               console.log('teachersWithImages before setting state:', teachersWithImages);
+              localStorage.setItem('teachers', JSON.stringify(teachersWithImages));
               setTeachers(teachersWithImages);
               setFilteredTeachers(teachersWithImages);
               console.log('teachersWithImages after setting state:', teachersWithImages);
@@ -79,6 +89,38 @@ export const AppProvider = ({children}) => {
     useEffect(() => {
       console.log('updated the teachers again', filteredTeachers);
     }, [filteredTeachers])
+
+    const resetTeacherStats = async () => {
+        const teacherRef = collection(db, 'teachers');
+        const snapshot = await getDocs(teacherRef);
+
+        const batch = writeBatch(db);
+
+
+    snapshot.forEach((docSnap) => {
+        const docRef = doc(db, "teachers", docSnap.id);
+        batch.update(docRef, {
+            rating: 0,  // Replace with actual field names
+            ratingAmount: 0,  // Replace with actual field names
+            "difficulty.easy": 0,
+            "difficulty.hard": 0,
+            "difficulty.medium": 0,
+            "difficulty.veryEasy": 0,
+            "difficulty.veryHard": 0,
+            "phones.phoneMaybe": 0,
+            "phones.phoneNo": 0,
+            "phones.phoneYes": 0,
+            comments: []
+        });
+    });
+
+    await batch.commit();
+    console.log("All teachers' fields have been reset to 0.");
+    }
+
+    useEffect(() => {
+
+    }, [])
 
 
     useEffect(() => {

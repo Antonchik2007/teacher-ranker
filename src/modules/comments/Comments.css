@@ -19,3 +19,12 @@
     display: flex;
     margin-top: 3vh;
 }
+.no-comments{
+    font-size: 1.5rem;
+    margin: 0 auto !important;
+}
+.no-comments-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

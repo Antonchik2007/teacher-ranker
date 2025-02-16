@@ -48,7 +48,7 @@ const Comments = () => {
                         return <Comment key={index} text={comment?.text} author={comment?.author} date={comment?.date}/>
                     })) 
                     : 
-                    (<p>no comments for this teacher</p>)}
+                    (<div className="no-comments-wrapper"><p className="no-comments">no comments for this teacher yet</p></div>)}
                 </Row>
             </Container>
         </div>

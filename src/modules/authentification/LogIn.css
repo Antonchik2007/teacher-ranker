@@ -29,6 +29,11 @@
     border: none;
     margin-bottom: 2vh;
 }
+.password-input{
+    border-radius: 15px;
+    border: none;
+    margin-bottom: 0vh;
+}
 .sign-in-button{
     margin-top: 2vh;
     border-radius: 15px;
@@ -47,6 +52,19 @@
     margin-top: 3vh;
     text-decoration: underline;
 }
+.password-requirenment-text{
+    font-size: 1rem;
+    margin: 0;
+    color: rgb(255, 255, 255);
+    margin-top: 0.5vh;
+}
+.select-log-in{
+    cursor: pointer;
+    text-decoration: none;
+}
+.select-log-in:hover{
+    color: grey;
+}
 @media screen and (min-width: 600px){
     .log-in-wrapper{
         width: 30vw;
@@ -62,6 +80,12 @@
         border: 3px solid white;
         padding: 1vh;
         margin-bottom: 2vh;
+    }
+    .password-input{
+        border-radius: 15px;
+        border: 3px solid white;
+        padding: 1vh;
+        margin-bottom: 0vh;
     }
     .aspen-text{
         font-size: 1rem;

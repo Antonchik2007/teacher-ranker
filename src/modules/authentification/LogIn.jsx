@@ -39,10 +39,11 @@ const LogIn = () => {
                 </div>
                 <div className="password">
                     <p>Password</p>
-                    <input type='password' ref={passwordInput} placeholder="Enter your password" className="log-in-input" minLength="6" value={password} onChange={(e) => handlePasswordChange(e)}/>
+                    <input type='password' ref={passwordInput} placeholder="Enter your password" className="password-input" minLength="6" value={password} onChange={(e) => handlePasswordChange(e)}/>
+                    <p className="password-requirenment-text">minimum 6 characters</p>
                 </div>
                 <button className="sign-in-button" onClick={isSignedUp ? (e) => handleLogIn(e, setEmail, setPassword, email, password, setError, setIsLoggedIn, setCurrentUser) : (e) => handleSignUp(e, setEmail, setPassword, email, password, setError, setIsSignedUp)}>{isSignedUp ? 'Log in' : 'Sign up'}</button>
-                <p className="switch-option-text">{isSignedUp ? <p>Don't have an account? <span onClick={() => setIsSignedUp(false)}>Sign up</span></p> : <p>Already have an account? <span onClick={() => setIsSignedUp(true)}>Log in</span></p>}</p>
+                <p className="switch-option-text">{isSignedUp ? <p>Don't have an account? <span onClick={() => setIsSignedUp(false)}>Sign up</span></p> : <p>Already have an account? <span onClick={() => setIsSignedUp(true)} className="select-log-in">Log in</span></p>}</p>
             </div>
         </div>
     )

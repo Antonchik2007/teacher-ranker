@@ -4,10 +4,11 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { initializeTeachers } from "../../firebase/teacherHandle";
 import { useAppContext } from "../../AppContext";
+import { handleLogOut } from "../authentification/authentification-functions";
 const Header = () => {
 
     const [expanded, setExpanded] = useState(false);
-    const {teachers, setTeachers} = useAppContext();
+    const {teachers, setTeachers, isLoggenIn, setIsLoggedIn, setCurrentUser} = useAppContext();
     const handleExpansion = () => {
       setExpanded(!expanded)
     }
@@ -28,7 +29,7 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link href="#home"><Link to='/' className="link" onClick={() => setExpanded(false)}><p className="link-text">Home</p></Link></Nav.Link>
-            <Nav.Link href="#logIn"><Link to='/logIn' className="link" onClick={() => setExpanded(false)}><p className="link-text">Log in</p></Link></Nav.Link>
+            <Nav.Link href="#logIn">{isLoggenIn ? <Link><p className="link-text" onClick={() => handleLogOut(setIsLoggedIn, setCurrentUser)}>Log out</p></Link> : <Link to='/logIn' className="link" onClick={() => setExpanded(false)}><p className="link-text">Log in</p></Link>}</Nav.Link>
             
           </Nav>
         </Navbar.Collapse>

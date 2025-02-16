@@ -1,8 +1,21 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signOut} from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore";
 import { db, auth } from '../../firebase/firebase'
 
 
+
+
+export const handleLogOut = async (setIsLoggedIn, setCurrentUser) => {
+    const auth = getAuth();
+    try{
+        await signOut(auth);
+        setIsLoggedIn(false);
+        setCurrentUser(null);
+        alert('User has been logged out successfully');
+    }catch(err){
+        alert('An unexpected error occured. Please try again.');
+    }
+}
 export const handleLogIn = async (e, setEmail, setPassword, email, password, setError, setIsLoggedIn, setCurrentUser) => {
     e.preventDefault();
     try{
