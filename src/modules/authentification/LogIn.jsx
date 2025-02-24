@@ -31,7 +31,7 @@ const LogIn = () => {
     }
     return(
         <div className="log-in-wrapper">
-            <h1 className="log-in-text" onClick={() => console.log(currentUser.email)}>{isSignedUp ? 'Log in' : 'Sign up'}</h1>
+            <h1 className="log-in-text" onClick={() => console.log(currentUser.uid)}>{isSignedUp ? 'Log in' : 'Sign up'}</h1>
             <div className="form">
                 <div className="email">
                     <p>Email</p>

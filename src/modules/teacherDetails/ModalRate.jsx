@@ -57,14 +57,14 @@ const ModalRate = ({customButton}) => {
       }
     }
 
-    
+    //function to get the teachers that the user has already rated
     useEffect(() => {
       const fetchUserData = async () => {
 
         if (!currentUser) return;
         
         try {
-            const userRef = doc(db, "users", currentUser.email);
+            const userRef = doc(db, "users", currentUser.uid);
             const userSnap = await getDoc(userRef);
   
             if (userSnap.exists()) {
@@ -95,7 +95,7 @@ const ModalRate = ({customButton}) => {
         setCurrentUser(auth.currentUser);
     
         // **1. Update user's ratedTeachers**
-        await updateDoc(doc(db, "users", currentUser.email), {
+        await updateDoc(doc(db, "users", currentUser.uid), {
           ratedTeachers: arrayUnion({
             teacher: currentTeacher.name,
             phone: phoneUsage[selectedPhoneIndex],
@@ -118,7 +118,7 @@ const ModalRate = ({customButton}) => {
     
         // **3. Update teacher's ratings and comments**
         await updateDoc(teacherRef, {
-          comments: arrayUnion({ text: commentInput, author: currentUser.email, date: Timestamp.now() }),
+          comments: arrayUnion({ text: commentInput, author: currentUser.uid, date: Timestamp.now() }),
           ratingAmount: increment(1),
           ratingTotal: increment(selectedRatingIndex + 1),
           rating: newRating, // Manually computed correct value
@@ -148,7 +148,7 @@ const ModalRate = ({customButton}) => {
         </Modal.Header>
         <Modal.Body>
           <div className="modal-teacher-header">
-            <p className="modal-teacher-title" onClick={() => console.log(currentUser.email)}>{currentTeacher.name}</p>
+            <p className="modal-teacher-title" onClick={() => console.log(currentUser.uid)}>{currentTeacher.name}</p>
             <p className="modal-teacher-class">Department: {currentTeacher.schoolDepartment}</p>
             <p className="modal-teacher-rating">Current rating: {currentTeacher.rating}</p>
           </div>

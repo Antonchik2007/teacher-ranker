@@ -21,7 +21,7 @@ export const handleLogIn = async (e, setEmail, setPassword, email, password, set
     try{
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         setIsLoggedIn(true);
-        setUserEmail(userCredential.user.email);
+        setUserEmail(userCredential.user.uid);
         alert('User logged in successfully');
     } catch(err){
         setError(err.message);
@@ -66,12 +66,12 @@ export const handleSignUp = async (e, setEmail, setPassword, email, password, se
     try{
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        setUserEmail(user.email);
+        setUserEmail(user.uid);
 
 
 
-        await setDoc(doc(db, "users", user.email), {
-            email: user.email,
+        await setDoc(doc(db, "users", user.uid)), {
+            email: user.uid,
             uid: user.uid,
             createdAt: new Date()
         })

@@ -15,20 +15,23 @@ export const AppProvider = ({children}) => {
         const [currentUser, setCurrentUser] = useState('')
         const [ratingTrigger, setRatingTrigger] = useState(false)
         const [filteredTeachers, setFilteredTeachers] = useState(teachers);
+
+        //this is the function to get teachers from the firebase
       useEffect(() => {
 
         const fetchTeachers = async () => {
           try {
-              console.log('fetchTeachers has been called');
-              const storedTeachers = localStorage.getItem('teachers');
+             // console.log('fetchTeachers has been called');
+             //purely for the session storage 
+            const storedTeachers = sessionStorage.getItem('teachers');
             if (storedTeachers) {
                 const parsedTeachers = JSON.parse(storedTeachers);
                 setTeachers(parsedTeachers);
                 setFilteredTeachers(parsedTeachers);
-                console.log('Loaded teachers from local storage:', parsedTeachers);
+               // console.log('Loaded teachers from local storage:', parsedTeachers);
                 return;
             }
-      
+                //actual function that gets teachers from firebase
               const teacherPromises = Object.entries(departments).flatMap(([department, teacherNames]) =>
                   teacherNames.map(async (name) => {
                       try {
@@ -69,25 +72,81 @@ export const AppProvider = ({children}) => {
               });
       
               // Update the state
-              console.log('teachersWithImages before setting state:', teachersWithImages);
-              localStorage.setItem('teachers', JSON.stringify(teachersWithImages));
+            //  console.log('teachersWithImages before setting state:', teachersWithImages);
+              sessionStorage.setItem('teachers', JSON.stringify(teachersWithImages));
               setTeachers(teachersWithImages);
               setFilteredTeachers(teachersWithImages);
-              console.log('teachersWithImages after setting state:', teachersWithImages);
+            //  console.log('teachersWithImages after setting state:', teachersWithImages);
               
           } catch (error) {
               console.error('fetchTeachers error:', error);
           }
       };
         fetchTeachers();
-        console.log('fetch teachers finished', filteredTeachers);
+       // console.log('fetch teachers finished', filteredTeachers);
         
 
-    }, [ratingTrigger]); // Add teachers as a dependency to avoid multiple updates
+    }, []); // Add teachers as a dependency to avoid multiple updates
+
+    //function to update the teachers once the rating is submitted
+
+    useEffect(() => {
+        const updateCurrentTeacher = async () => {
+            try {
+                // Only fetch the current teacher by their name
+                const teacherRef = doc(db, "teachers", currentTeacher.name); // Fetch the current teacher by name
+                const teacherDoc = await getDoc(teacherRef);
+        
+                if (!teacherDoc.exists()) {
+                    console.error(`Teacher ${currentTeacher.name} does not exist`);
+                    return; // Exit if teacher doesn't exist
+                }
+        
+                const teacherData = teacherDoc.data();
+                
+                // Prepare the new teacher data
+                const updatedTeacher = {
+                    name: currentTeacher.name,
+                    rating: teacherData.rating ? teacherData.rating.toFixed(1) : 0,
+                    ratingAmount: teacherData.ratingAmount || 0,
+                    phones: teacherData.phones || {},
+                    difficulty: teacherData.difficulty || {},
+                    schoolDepartment: currentTeacher.department, // Assuming currentTeacher has a department field
+                };
+        
+                // Add image info
+                const imageName = updatedTeacher.name.replace(/\s+/g, '_') + '.jpg';
+                const updatedTeacherWithImage = { ...updatedTeacher, image: imageName };
+        
+                // Update the teachers list by replacing the old currentTeacher with the new one
+                setTeachers((prevTeachers) => {
+                    return prevTeachers.map((teacher) =>
+                        teacher.name === currentTeacher.name ? updatedTeacherWithImage : teacher
+                    );
+                });
+        
+                setFilteredTeachers((prevFilteredTeachers) => {
+                    return prevFilteredTeachers.map((teacher) =>
+                        teacher.name === currentTeacher.name ? updatedTeacherWithImage : teacher
+                    );
+                });
+        
+                // Optionally, store the updated teacher in sessionStorage (if needed for other parts of your app)
+                sessionStorage.setItem('teacher', JSON.stringify(updatedTeacherWithImage));
+        
+            } catch (error) {
+                console.error(`Error fetching teacher ${currentTeacher.name}:`, error);
+            }
+        };
+        
+        updateCurrentTeacher();
+        
+    }, [ratingTrigger])
+    
 
 
     useEffect(() => {
-      console.log('updated the teachers again', filteredTeachers);
+     // console.log('updated the teachers again', filteredTeachers);
     }, [filteredTeachers])
 
     const resetTeacherStats = async () => {
@@ -102,6 +161,7 @@ export const AppProvider = ({children}) => {
         batch.update(docRef, {
             rating: 0,  // Replace with actual field names
             ratingAmount: 0,  // Replace with actual field names
+            ratingTotal: 0,
             "difficulty.easy": 0,
             "difficulty.hard": 0,
             "difficulty.medium": 0,
@@ -119,23 +179,23 @@ export const AppProvider = ({children}) => {
     }
 
     useEffect(() => {
-
+        
     }, [])
 
 
     useEffect(() => {
       if(currentTeacher && !Array.isArray(currentTeacher)){
-        localStorage.setItem("selectedTeacher", JSON.stringify(currentTeacher));
-        console.log('setting the teacher to be:', localStorage.getItem('selectedTeacher')); 
+        sessionStorage.setItem("selectedTeacher", JSON.stringify(currentTeacher));
+        //console.log('setting the teacher to be:', sessionStorage.getItem('selectedTeacher')); 
       }           
   }, [currentTeacher]);
   
   // Load teacher on page refresh
   useEffect(() => {
-      const storedTeacher = localStorage.getItem("selectedTeacher");
+      const storedTeacher = sessionStorage.getItem("selectedTeacher");
       if (storedTeacher) {
           setCurrentTeacher(JSON.parse(storedTeacher));
-          console.log('loading on page refresh: ', localStorage.getItem('selectedTeacher'));
+          //console.log('loading on page refresh: ', sessionStorage.getItem('selectedTeacher'));
       }
   }, []);
 
