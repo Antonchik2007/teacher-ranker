@@ -1,7 +1,9 @@
 .profile-text{
    margin: 0 auto;
-   margin-top: 8vh;
-   padding-bottom: 6vh;
+   margin-top: calc(8svh)
+;
+   padding-bottom: calc(6svh)
+;
    font-size: 2.5rem;
    font-weight: bold;
 }
@@ -9,12 +11,13 @@
     display: flex;
     margin: 0 auto;
     flex-direction: column;
-    width: 94vw;
+    width: calc(94vw);
 }
 .buttons{
     display: flex;
     flex-direction: column;
-    gap: 5vh;
+    gap: calc(5svh)
+;
     font-size: 2rem;
 }
 .button{
@@ -22,8 +25,10 @@
     color: white;
     border-radius: 15px;
     border: none;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    padding-top: calc(1svh)
+;
+    padding-bottom: calc(1svh)
+;
 }
 .button:hover{
     background-color: grey;
@@ -34,12 +39,13 @@
 
 @media screen and (min-width: 600px){
     .profie-page-wrapper{
-        width: 67vw;
+        width: calc(67vw);
     }
     .buttons{
         display: flex;
         flex-direction: column;
-        gap: 8vh;
+        gap: calc(8svh)
+;
         font-size: 3rem;
     }
     .profile-text{

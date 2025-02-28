@@ -4,7 +4,9 @@
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    padding: 1vh 18vw 1vh 18vw;
+    padding: calc(1svh)
+ calc(18vw) calc(1svh)
+ calc(18vw);
     border-radius: 15px;
     cursor: pointer;
 }
@@ -18,7 +20,9 @@
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    padding: 1vh 30% 1vh 30%;
+    padding: calc(1svh)
+ 30% calc(1svh)
+ 30%;
     border-radius: 15px;
     cursor: pointer;
     border: none;
@@ -90,21 +94,27 @@
     border-radius: 15px;
     border-color: #007AFF;
     font-size: 1rem;
-    padding: 1vh;
-    height: 10vh;
+    padding: calc(1svh)
+;
+    height: calc(10svh)
+;
 }
 .modal-comment::placeholder{
     font-size: 1rem;
 }
 .class-difficulty-rating, .modal-phone{
     border: 1.5px solid #007AFF;
-    padding: 1vh 4vw 1vh 4vw;
+    padding: calc(1svh)
+ calc(4vw) calc(1svh)
+ calc(4vw);
     border-radius: 15px;
     cursor: pointer;
     color: #007AFF;
 }
 .modal-phone{
-    padding: 1vh 3vw 1vh 3vw;
+    padding: calc(1svh)
+ calc(3vw) calc(1svh)
+ calc(3vw);
 }
 .difficulty-rating-active, .modal-phone-active{
     color: white;
@@ -113,6 +123,8 @@
 }
 @media screen and (min-width: 1400px){
     .class-difficulty-rating, .modal-phone{
-        padding: 1vh 1vw 1vh 1vw;
+        padding: calc(1svh)
+ calc(1vw) calc(1svh)
+ calc(1vw);
     }
 }

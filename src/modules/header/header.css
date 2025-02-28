@@ -1,5 +1,5 @@
 .navbar{
-    width: 100vw;
+    width: calc(100vw);
     background-color: #007AFF;
     color: white !important;
 }

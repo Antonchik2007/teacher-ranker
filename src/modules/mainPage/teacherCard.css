@@ -2,18 +2,22 @@
     background-color: #007AFF !important;
     color: white !important;
     border-radius: 15px !important;
-    height: 85vh !important;
-    padding: 1vw;
-    margin-top: 2vh ;
-    margin-bottom: 2vh;
+    height: calc(85svh)
+ !important;
+    padding: calc(1vw);
+    margin-top: calc(2svh)
+ ;
+    margin-bottom: calc(2svh)
+;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 94vw;
+    width: calc(94vw);
 }
 
 .profile-picture{
-    margin-top: 0vh !important;
+    margin-top: calc(0svh)
+ !important;
     padding-top: 0 !important;
     border: 3px solid white;
     border-radius: 15px;
@@ -23,25 +27,29 @@ img{
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
 }
 .info{
-    margin-top: 2vh;
+    margin-top: calc(2svh)
+;
     font-size: 1.5rem;
     font-weight: 500;
 }
 .name{
-    margin-top: 5vh;
+    margin-top: calc(5svh)
+;
     font-size: 2rem;
-    margin-bottom: 5vh;
+    margin-bottom: calc(5svh)
+;
     font-weight: bold;
 }
 .rating{
     display: flex;
-    gap: 2vw;
+    gap: calc(2vw);
     margin-top: 0;
 }
 .class{
     display: flex;
-    gap: 2vw;
-    margin-top: 4vh;
+    gap: calc(2vw);
+    margin-top: calc(4svh)
+;
 }
 .details{
     background-color: white;
@@ -49,29 +57,50 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 5vh 2.5vh 5vh !important;
-    padding-top: 2.5vh !important;
+    padding: 0 calc(5svh)
+ calc(2.5svh)
+ calc(5svh)
+ !important;
+    padding-top: calc(2.5svh)
+ !important;
     color: #007AFF;
     text-decoration: none;
-    margin-top: 0vh;
+    margin-top: calc(0svh)
+;
     color: #007AFF !important;
     display: flex !important;
     justify-content: center;
     align-items: center;
 }
+.rate{
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 calc(19vw) calc(0svh) calc(19vw);
+    padding-top: calc(2.5svh)
+;
+    color: #007AFF;
+    cursor: pointer;
+}
 .rating-amount{
     margin: 0;
 }
+
 @media (min-width: 1200px) and (max-width: 1400px) and (min-height: 700px) and (max-height: 800px) {
     .details{
-        padding-top: 1.5vh;
+        padding-top: calc(1.5svh)
+;
         padding: 3% 4% 3% 4% !important;
     }
 }
 @media (min-width: 1401px){
     .details{
-        padding-top: 1.7vh !important;
-        padding-bottom: 1.7vh !important;
+        padding-top: calc(1.7svh)
+ !important;
+        padding-bottom: calc(1.7svh)
+ !important;
     }
     .card{
         height: 98% !important;
@@ -80,6 +109,7 @@ img{
     .rating-amount{
         margin: 0;
     }
+    
 }
 .details:hover{
     background-color: grey;
@@ -87,24 +117,20 @@ img{
     color: white !important; 
     cursor: pointer;
 }
-.rate{
-    background-color: white;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 19vw 0vh 19vw;
-    padding-top: 2.5vh;
-    color: #007AFF;
-    cursor: pointer;
-}
+
 @media screen and (min-width: 600px){
     .rate{
-        padding: 0 4.5vw 0vh 4.5vw;
-        padding-top: 1.5vh;
+        padding: 0 calc(4.5vw) calc(0svh)
+ calc(4.5vw);
+        padding-top: calc(1.5svh)
+;
     }
     .details{
-        padding: 1.8vh 5vh 1.8vh 5vh;
+        padding: calc(1.8svh)
+ calc(5svh)
+ calc(1.8svh)
+ calc(5svh)
+;
     }
 }
 .rate:hover{

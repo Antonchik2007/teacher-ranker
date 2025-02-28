@@ -2,21 +2,25 @@
     display: flex;
     margin: 0 auto;
     flex-direction: column;
-    width: 94vw;
+    width: calc(94vw);
     border-radius: 30px;
 }
 .log-in-text{
     margin: 0 auto;
-   margin-top: 8vh;
-   padding-bottom: 6vh;
+   margin-top: calc(8svh)
+;
+   padding-bottom: calc(6svh)
+;
    font-size: 2.5rem;
    font-weight: bold;
 }
 .form{
     border-radius: 5px;
     display: flex;
-    padding: 1vh;
-    padding-top: 3vh;
+    padding: calc(1svh)
+;
+    padding-top: calc(3svh)
+;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -27,19 +31,24 @@
 .log-in-input{
     border-radius: 15px;
     border: none;
-    margin-bottom: 2vh;
+    margin-bottom: calc(2svh)
+;
 }
 .password-input{
     border-radius: 15px;
     border: none;
-    margin-bottom: 0vh;
+    margin-bottom: calc(0svh)
+;
 }
 .sign-in-button{
-    margin-top: 2vh;
+    margin-top: calc(2svh)
+;
     border-radius: 15px;
     background-color: white;
     border: none;
-    padding: 1vh 27vw 1vh 27vw;
+    padding: calc(1svh)
+ calc(27vw) calc(1svh)
+ calc(27vw);
     color: #007AFF;
 }
 .sign-in-button:hover{
@@ -49,14 +58,16 @@
 }
 .switch-option-text{
     font-size: 1.15rem;
-    margin-top: 3vh;
+    margin-top: calc(3svh)
+;
     text-decoration: underline;
 }
 .password-requirenment-text{
     font-size: 1rem;
     margin: 0;
     color: rgb(255, 255, 255);
-    margin-top: 0.5vh;
+    margin-top: calc(0.5svh)
+;
 }
 .select-log-in{
     cursor: pointer;
@@ -67,25 +78,31 @@
 }
 @media screen and (min-width: 600px){
     .log-in-wrapper{
-        width: 30vw;
+        width: calc(30vw);
     }
     .log-in-text{
         font-size: 4rem;
     }
     .sign-in-button{
-        padding: 1vh 5.3vw 1vh 5.3vw;
+        padding: calc(1svh)
+ calc(5.3vw) calc(1svh)
+ calc(5.3vw);
     }
     .log-in-input{
         border-radius: 15px;
         border: 3px solid white;
-        padding: 1vh;
-        margin-bottom: 2vh;
+        padding: calc(1svh)
+;
+        margin-bottom: calc(2svh)
+;
     }
     .password-input{
         border-radius: 15px;
         border: 3px solid white;
-        padding: 1vh;
-        margin-bottom: 0vh;
+        padding: calc(1svh)
+;
+        margin-bottom: calc(0svh)
+;
     }
     .aspen-text{
         font-size: 1rem;

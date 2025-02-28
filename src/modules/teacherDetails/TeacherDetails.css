@@ -1,11 +1,12 @@
 .details-wrapper{
-    width: 100vw;
+    width: calc(100vw);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    min-height: 90vh;
+    min-height: calc(90svh)
+;
     height: 100%;
 }
 .teacher-header{
@@ -23,29 +24,34 @@
     padding: 4%;
 }
 .teacher-header-text{
-    margin: 1vw;
+    margin: calc(1vw);
 }
 .phone-info{
-    width: 90vw;
+    width: calc(90vw);
     background-color: #007AFF;
     border-radius: 15px;
     margin-top: 5%;
-    padding: 1vh;
+    padding: calc(1svh)
+;
 }
 .difficulty-info{
-    margin-top: 3vh;
+    margin-top: calc(3svh)
+;
     background-color: #007AFF;
-    width: 90vw;
+    width: calc(90vw);
     border-radius: 15px;
-    padding: 1vh;
+    padding: calc(1svh)
+;
 }
 
 .report-text-title, .difficulty-title{
     margin-left: 5%;
     font-weight: bold;
     color: white;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+    margin-top: calc(1svh)
+;
+    margin-bottom: calc(1svh)
+;
 }
 .very-easy{
     color: #00FF11;
@@ -70,18 +76,21 @@
     color: #FFD900;
 }
 .report-text, .difficulty-text{
-    margin: 1vw;
+    margin: calc(1vw);
     margin-left: 5%;
     color: white;
 }
 .not-allowed{
-    margin-bottom: 1vh;
+    margin-bottom: calc(1svh)
+;
 }
 .asses-buttons{
-    margin-top: 3vh;
+    margin-top: calc(3svh)
+;
     display: flex;
     flex-direction: column;
-    gap: 1vh;
+    gap: calc(1svh)
+;
     margin-bottom: 4%;
 }
 .asses-button{
@@ -90,7 +99,9 @@
     border-radius: 15px;
     border: none;
     font-size: 1.5rem;
-    padding: 1vh 3vw 1vh 3vw;
+    padding: calc(1svh)
+ calc(3vw) calc(1svh)
+ calc(3vw);
 }
 .asses-button:hover{
     background-color: grey;
@@ -98,7 +109,8 @@
 }
 @media screen and (min-width: 1401px){
     .comment-button{
-        margin-bottom: 3vh;
+        margin-bottom: calc(3svh)
+;
         width: 100% !important;
     }
     .difficulty-info, .phone-info{

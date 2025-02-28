@@ -1,11 +1,13 @@
 .comments-row{
-    height: 30vh !important;
+    height: calc(30svh)
+ !important;
 }
 .leave-comment-button{
     margin: 0 auto;
     color: white;
     background-color: #007AFF;
-    padding: 2vh;
+    padding: calc(2svh)
+;
     border-radius: 15px;
     font-size: 1.3rem;
     cursor: pointer;
@@ -15,9 +17,10 @@
     transition: 0.3s;
 }
 .wrapper{
-    width: 100vw;
+    width: calc(100vw);
     display: flex;
-    margin-top: 3vh;
+    margin-top: calc(3svh)
+;
 }
 .no-comments{
     font-size: 1.5rem;

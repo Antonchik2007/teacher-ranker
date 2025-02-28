@@ -9,7 +9,37 @@ import TeacherDetails from './modules/teacherDetails/TeacherDetails';
 import { useEffect } from 'react';
 function App() {
 
+  useEffect(() => {
+    const setFixedHeight = () => {
+      const vh = window.innerHeight * 0.01;  // 1% of the viewport height
+      document.documentElement.style.setProperty('--vh', `${vh * 100}px`);  // Set the fixed height as a custom property
+    };
 
+    // Call this on page load to set the fixed height
+    window.addEventListener('load', setFixedHeight);
+
+
+    // Cleanup the event listeners when the component is unmounted
+    return () => {
+      window.removeEventListener('load', setFixedHeight);
+    };
+    
+  }, []);
+  useEffect(() => {
+    const setFixedWidth = () => {
+      const vw = window.innerWidth * 0.01;  // 1% of the viewport height
+      document.documentElement.style.setProperty('--vw', `${vw * 100}px`);  // Set the fixed height as a custom property
+    };
+
+    // Call this on page load to set the fixed height
+    window.addEventListener('load', setFixedWidth);
+
+
+    // Cleanup the event listeners when the component is unmounted
+    return () => {
+      window.removeEventListener('load', setFixedWidth);
+    };
+  }, [])
 
   return (
     <BrowserRouter>

@@ -1,3 +1,4 @@
 .main-page-wrapper{
-    margin-top: 2vh;
+    margin-top: calc(2svh)
+;
 }
